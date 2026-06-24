@@ -1,0 +1,116 @@
+
+
+rubric_name: "Strict Strategy & Execution Rubric"
+scale:
+  min: 1
+  max: 10
+  description: >
+    1-2: Severely lacking or absent — the deck does not meaningfully
+    attempt this criterion. 3-4: Below expectations — attempted but with
+    major, disqualifying gaps. 5-6: Adequate — meets the baseline, no
+    major errors, but unremarkable and largely expected. 7-8: Strong —
+    correct AND demonstrates real insight or rigor beyond the obvious.
+    9-10: Exceptional — rare; reserve for work you'd hold up as a model
+    answer with no significant flaw you can find.
+
+criteria:
+  - id: research_evidence
+    name: "Research & Evidence Quality"
+    weight: 17
+    description: >
+      Is every material claim backed by a credible, identifiable source
+      or sound first-principles derivation — not just asserted? Check
+      specifically for: invented or unsourced statistics; stale data
+      presented as current; cherry-picked evidence that ignores
+      contradicting information; confusing correlation with causation;
+      and research that only confirms the team's chosen direction rather
+      than genuinely stress-testing it. A deck with confident numbers but
+      no traceable source for them should score low here regardless of
+      how polished the slide looks.
+
+  - id: competitive_landscape
+    name: "Competitive Landscape"
+    weight: 17
+    description: >
+      Does the deck name and meaningfully analyze REAL competitors and
+      substitutes (not strawman or generic "competitors exist" framing)?
+      Check specifically for: missing the most obvious direct competitor;
+      treating competitive response as static (assuming competitors will
+      not react to the team's proposed move); ignoring indirect
+      substitutes or adjacent entrants; and overstating the team's own
+      differentiation without evidence it's actually defensible (e.g. not
+      easily copied). A competitive analysis that only lists competitors
+      without assessing their likely reaction or relative strength is
+      incomplete, not just thin.
+
+  - id: strategy_soundness
+    name: "Strategy"
+    weight: 17
+    description: >
+      Does the core strategic choice logically follow from the research
+      and competitive analysis, rather than being a generic playbook
+      answer applied regardless of fit? Check specifically for:
+      unstated or implausible assumptions the strategy depends on;
+      conclusions that don't follow from the data shown; failure to
+      consider the most obvious alternative strategy and explain why it
+      was rejected; and strategic recommendations that sound decisive but
+      are actually vague enough to be unfalsifiable (e.g. "focus on
+      growth" with no specific mechanism).
+
+  - id: gtm_implementation
+    name: "Go-to-Market & Implementation"
+    weight: 17
+    description: >
+      Is there a concrete, sequenced plan to actually execute the
+      strategy — not just a restatement of the strategy in execution
+      language? Check specifically for: missing or unrealistic
+      timelines; no discussion of required resourcing, budget, headcount,
+      or capability gaps; channel/distribution claims with no evidence
+      they're accessible to this team; first-mover steps that are vague
+      ("launch a pilot") rather than specific (what pilot, where, with
+      whom, measuring what); and no contingency if the first GTM motion
+      underperforms. This is the criterion most likely to expose whether
+      a "strategy" is actually executable or just a slogan — judge it
+      that way.
+
+  - id: impact
+    name: "Impact"
+    weight: 16
+    description: >
+      Is the projected impact (financial, market, or strategic) derived
+      from the team's own stated assumptions with traceable math, or is
+      it an asserted headline number? Check specifically for: revenue or
+      market-share projections that don't reconcile with the market
+      sizing shown elsewhere in the deck; impact claimed without a stated
+      baseline or timeframe; ignoring costs, cannibalization, or downside
+      scenarios when stating upside; and impact framed in vague
+      qualitative terms ("significant growth") when the team had the
+      inputs to quantify it and chose not to.
+
+  - id: design_choices
+    name: "Design Choices"
+    weight: 16
+    description: >
+      Do the deck's structural and visual choices serve the argument, or
+      do they substitute for it? Check specifically for: a storyline that
+      doesn't follow situation → complication → resolution; conclusions
+      stated before the supporting evidence is shown; charts/frameworks
+      included for visual weight without actually supporting the
+      adjacent claim; inconsistent or misleading data visualization
+      (e.g. truncated axes, mismatched scales); and slides that are
+      visually polished specifically in places where the underlying
+      analysis is thin — treat that pattern itself as a flaw, since it
+      suggests design is compensating for substance.
+
+overall_verdict:
+  bands:
+    - min_score: 8.5
+      label: "Exceptional — Competition-winning caliber"
+    - min_score: 7.0
+      label: "Strong — Top-tier submission"
+    - min_score: 5.5
+      label: "Solid — Competent, meets expectations"
+    - min_score: 4.0
+      label: "Developing — Notable gaps"
+    - min_score: 0
+      label: "Weak — Significant rework needed"

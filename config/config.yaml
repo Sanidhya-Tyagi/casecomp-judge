@@ -1,0 +1,73 @@
+
+
+ollama:
+  model: llama3                 # text model used for summarising/judging
+  vision_model: qwen2.5vl        # vision-capable model used to read slide images
+                                  # (charts, frameworks, tables). Leave blank to
+                                  # reuse `model` for everything. Other good options:
+                                  # llama3.2-vision, llava. Must support `images` in
+                                  # /api/generate. Run `ollama pull qwen2.5vl` first.
+  host: http://localhost:11434
+  timeout_seconds: 300
+  temperature: 0.2              # low temperature = more consistent judging
+  num_ctx: 8192                 # context window; raise if your model supports it
+                                  # and decks are large
+
+extraction:
+  render_images: true           # rasterize each slide to PNG (kept alongside text)
+  dpi: 150                      # resolution for rasterized slides
+  use_vision: true              # if true, runs vision on slides that need it and
+                                  # merges the visual description into that slide's
+                                  # text before summarising/judging. Routing is
+                                  # automatic: a slide only gets a vision call if it
+                                  # has enough vector drawings/embedded images to
+                                  # suggest a chart/diagram/table — plain-text slides
+                                  # skip the call entirely. Set false to disable
+                                  # vision altogether (faster, blind to charts).
+  max_chars_per_slide: 4000     # safety cap to avoid blowing the context window
+  max_slides_in_prompt: 60      # safety cap on very long decks
+
+watch:
+  watch_dir: data/watch
+  processed_dir: data/processed
+  reports_dir: data/reports
+  archive_dir: data/archive
+  poll_interval_seconds: 5
+  move_processed_to_archive: true
+  supported_extensions:
+    - ".pdf"
+
+agents:
+  summarizer:
+    max_retries: 2
+    retry_backoff_seconds: 3
+  judge:
+    max_retries: 2
+    retry_backoff_seconds: 3
+    rubric_path: config/rubric.yaml
+  judge_critique:
+    enabled: true                # run the self-critique / re-judge loop (see README)
+    max_revision_rounds: 1        # hard cap on re-judge attempts per criterion.
+                                    # 0 disables re-judging (initial pass only, but
+                                    # confidence/cited_slides are still reported).
+  fact_checking:
+    enabled: true                # extract checkable factual claims (named market
+                                    # sizes, public company stats, industry figures
+                                    # — NOT the team's own projections/estimates)
+                                    # and verify them via free web search (no API
+                                    # key — see utils/web_search.py). Contradicted/
+                                    # outdated claims become citable faults in
+                                    # judging; unverifiable claims are never
+                                    # penalized. Set false to disable entirely.
+    max_claims: 10                # cap on claims verified per deck (cost ceiling)
+    max_search_results: 4         # search results fetched per claim
+  viability:
+    enabled: true                # run a dedicated holistic call assessing whether
+                                    # the deck's strategy is actually executable
+                                    # (viable / viable_with_caveats / unrealistic),
+                                    # separate from the per-criterion rubric scores.
+                                    # See README "Viability assessment design".
+
+logging:
+  level: INFO
+  log_file: data/pipeline.log
